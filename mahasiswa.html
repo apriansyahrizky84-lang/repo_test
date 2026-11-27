@@ -1,0 +1,61 @@
+<?php
+$mahasiswa = [];
+
+if (isset($_POST['tambah'])) {
+    $nama = $_POST['nama'];
+    $nim = $_POST['nim'];
+    $jurusan = $_POST['jurusan'];
+
+    $mahasiswa[] = [
+        'nama' => $nama,
+        'nim' => $nim,
+        'jurusan' => $jurusan
+    ];
+}
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Mahasiswa</title>
+</head>
+<body>
+
+    <h2>Tambah Mahasiswa</h2>
+
+    <form method="POST">
+        <label>Nama:</label><br>
+        <input type="text" name="nama" required><br><br>
+
+        <label>NIM:</label><br>
+        <input type="text" name="nim" required><br><br>
+
+        <label>Jurusan:</label><br>
+        <input type="text" name="jurusan" required><br><br>
+
+        <button type="submit" name="tambah">Tambah Mahasiswa</button>
+    </form>
+
+    <h2>Data Mahasiswa</h2>
+
+    <?php if (!empty($mahasiswa)): ?>
+        <table border="1" cellpadding="8">
+            <tr>
+                <th>Nama</th>
+                <th>NIM</th>
+                <th>Jurusan</th>
+            </tr>
+
+            <?php foreach ($mahasiswa as $mhs): ?>
+                <tr>
+                    <td><?= htmlspecialchars($mhs['nama']) ?></td>
+                    <td><?= htmlspecialchars($mhs['nim']) ?></td>
+                    <td><?= htmlspecialchars($mhs['jurusan']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    <?php endif; ?>
+
+</body>
+</html>
